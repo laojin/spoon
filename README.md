@@ -1,13 +1,13 @@
-# Spoon - A package for building specific Proxy Pool for different URLs.
-Spoon is a library for building Proxy Pool for each different URLs as you assign.      
+# Spoon - A package for building specific Proxy Pool for different Sites.
+Spoon is a library for building Proxy Pool for each different sites as you assign.      
 Only running on python 3.
 
 ## Run
 
 ### Spoon-server
-Please make sure the Redis is running. Default configuration is "host:localhost, port:6379"      
+Please make sure the Redis is running. Default configuration is "host:localhost, port:6379". You can also modify the Redis connection.      
 Like `example.py` in `spoon_server/example`,      
-You can assign many different proxy provider.
+You can assign many different proxy providers.
 ```python
 from spoon_server.proxy.fetcher import Fetcher
 from spoon_server.main.proxy_pipe import ProxyPipe
