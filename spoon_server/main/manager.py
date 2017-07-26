@@ -5,8 +5,11 @@ from spoon_server.util.logger import log
 
 
 class Manager(object):
-    def __init__(self, url_prefix=None, fetcher=None):
-        self.database = RedisWrapper("127.0.0.1", 6379)
+    def __init__(self, database=None, url_prefix=None, fetcher=None):
+        if not database:
+            self.database = RedisWrapper("127.0.0.1", 6379, 0)
+        else:
+            self.database = RedisWrapper(database.host, database.port, database.db)
 
         self._origin_prefix = 'origin_proxy'
         self._useful_prefix = 'useful_proxy'

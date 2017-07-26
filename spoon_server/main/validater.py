@@ -4,8 +4,8 @@ from spoon_server.main.manager import Manager
 
 
 class Validater(Manager):
-    def __init__(self, fetcher, url_prefix=None):
-        super(Validater, self).__init__(url_prefix, fetcher)
+    def __init__(self, fetcher, url_prefix=None, database=None):
+        super(Validater, self).__init__(database, url_prefix, fetcher)
 
     def _validate_proxy(self):
         while True:
@@ -31,8 +31,8 @@ class Validater(Manager):
         self._validate_proxy()
 
 
-def validater_run(url=None, fetcher=None):
-    validater = Validater(url_prefix=url, fetcher=fetcher)
+def validater_run(url=None, fetcher=None, database=None):
+    validater = Validater(url_prefix=url, fetcher=fetcher, database=database)
     validater.main()
 
 

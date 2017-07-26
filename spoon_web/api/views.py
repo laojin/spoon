@@ -2,16 +2,19 @@ import json
 import random
 from django.http import HttpResponse
 
+from spoon_server.database.redis_config import RedisConfig
 from spoon_server.main.manager import Manager
+
+redis = RedisConfig("127.0.0.1", 21009)
 
 
 def get_keys(request):
-    m = Manager()
+    m = Manager(database=redis)
     return HttpResponse(json.dumps(m.get_keys()))
 
 
 def fetchone_from(request):
-    m = Manager()
+    m = Manager(database=redis)
     target_name = request.GET.get("target", "www.baidu.com")
     filter_num = int(request.GET.get("filter", 10))
     search_name = ":".join(["spoon", target_name, "useful_proxy"])
@@ -23,7 +26,7 @@ def fetchone_from(request):
 
 
 def fetchall_from(request):
-    m = Manager()
+    m = Manager(database=redis)
     target_name = request.GET.get("target", "www.baidu.com")
     filter_num = int(request.GET.get("filter", 10))
     search_name = ":".join(["spoon", target_name, "useful_proxy"])
