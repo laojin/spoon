@@ -21,7 +21,7 @@ class ProxyPipe(object):
         return self
 
     def start(self):
-        proc1 = Process(target=validater_run, args=(self._url_prefix, self._fetcher, self._database, ))
+        proc1 = Process(target=validater_run, args=(self._url_prefix, self._database, ))
         proc2 = Process(target=refresher_run, args=(self._url_prefix, self._fetcher, self._database, ))
 
         proc_list = [proc1, proc2]

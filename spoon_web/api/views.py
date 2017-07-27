@@ -32,6 +32,6 @@ def fetchall_from(request):
     search_name = ":".join(["spoon", target_name, "useful_proxy"])
 
     px_kv = m.get_all_kv_from(search_name)
-    res_list = [k.decode('utf-8') for (k, v) in px_kv.items() if int(v.decode('utf-8')) > filter_num]
+    res_list = [k.decode('utf-8') for (k, v) in px_kv.items() if int(v) > filter_num]
 
     return HttpResponse("\r\n".join(res_list))
