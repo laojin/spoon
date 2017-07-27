@@ -10,6 +10,8 @@ class ProxyPipe(object):
     def __init__(self, database=None, fetcher=None, url_prefix=None):
         if not fetcher:
             self._fetcher = Fetcher()
+        else:
+            self._fetcher = fetcher
 
         self._database = database
         self._url_prefix = url_prefix

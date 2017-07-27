@@ -13,7 +13,7 @@ class Validater(Manager):
                 if isinstance(each_proxy, bytes):
                     each_proxy = each_proxy.decode('utf-8')
                 value = self.database.getvalue(self.generate_name(self._useful_prefix), each_proxy)
-                if value and int(value) < -2:
+                if int(value) < -2:
                     self.database.delete(self.generate_name(self._useful_prefix), each_proxy)
                 if validate(self._url_prefix, each_proxy):
                     if not int(value) >= 100:
