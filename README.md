@@ -14,7 +14,7 @@ class CheckerBaidu(Checker):
     def checker_func(self, html=None):
         if isinstance(html, bytes):
             html = html.decode('utf-8')
-        if re.match(r".*?????????.*", html):
+        if re.match(r".*百度一下，你就知道.*", html):
             return True
         else:
             return False
