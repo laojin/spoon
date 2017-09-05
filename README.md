@@ -18,7 +18,8 @@ from spoon_server.database.redis_config import RedisConfig
 def main_run():
     redis = RedisConfig("127.0.0.1", 21009)
     p1 = ProxyPipe(url_prefix="https://www.google.com",
-                   fetcher=Fetcher(use_default=False), database=redis).set_fetcher([UsProvider()])
+                   fetcher=Fetcher(use_default=False),
+                   database=redis).set_fetcher([UsProvider()]).add_fetcher([WuyouProvider()])
     p1.start()
 
 
