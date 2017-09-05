@@ -10,7 +10,7 @@ Like `example.py` in `spoon_server/example`,
 You can assign many different proxy providers.
 Also with different checker, you can validate the result precisely.
 ```python
-lass CheckerBaidu(Checker):
+class CheckerBaidu(Checker):
     def checker_func(self, html=None):
         if isinstance(html, bytes):
             html = html.decode('utf-8')
@@ -28,7 +28,7 @@ from spoon_server.proxy.us_provider import UsProvider
 from spoon_server.database.redis_config import RedisConfig
 
 
-ef main_run():
+def main_run():
     redis = RedisConfig("127.0.0.1", 21009)
     p1 = ProxyPipe(url_prefix="https://www.baidu.com",
                    fetcher=Fetcher(use_default=False),
