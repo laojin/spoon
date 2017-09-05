@@ -8,6 +8,19 @@ Only running on python 3.
 Please make sure the Redis is running. Default configuration is "host:localhost, port:6379". You can also modify the Redis connection.      
 Like `example.py` in `spoon_server/example`,      
 You can assign many different proxy providers.
+Also with different checker, you can validate the result precisely.
+```python
+lass CheckerBaidu(Checker):
+    def checker_func(self, html=None):
+        if isinstance(html, bytes):
+            html = html.decode('utf-8')
+        if re.match(r".*?????????.*", html):
+            return True
+        else:
+            return False
+```
+
+
 ```python
 from spoon_server.proxy.fetcher import Fetcher
 from spoon_server.main.proxy_pipe import ProxyPipe
@@ -15,11 +28,12 @@ from spoon_server.proxy.us_provider import UsProvider
 from spoon_server.database.redis_config import RedisConfig
 
 
-def main_run():
+ef main_run():
     redis = RedisConfig("127.0.0.1", 21009)
-    p1 = ProxyPipe(url_prefix="https://www.google.com",
+    p1 = ProxyPipe(url_prefix="https://www.baidu.com",
                    fetcher=Fetcher(use_default=False),
-                   database=redis).set_fetcher([UsProvider()]).add_fetcher([WuyouProvider()])
+                   database=redis,
+                   checker=CheckerBaidu()).set_fetcher([KuaiProvider()]).add_fetcher([XiciProvider()])
     p1.start()
 
 
