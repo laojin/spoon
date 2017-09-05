@@ -1,3 +1,4 @@
+selenium
 requests==2.18.1
 django==1.11.3
 lxml==3.8.0

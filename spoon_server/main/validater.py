@@ -8,7 +8,7 @@ from spoon_server.database.redis_config import RedisConfig
 
 
 class Validater(Manager):
-    def __init__(self,url_prefix=None, database=None):
+    def __init__(self, url_prefix=None, database=None):
         super(Validater, self).__init__(database, url_prefix)
 
     def _validate_proxy(self, each_proxy):
@@ -31,7 +31,8 @@ class Validater(Manager):
     def main(self):
         while True:
             with Pool(10) as pool:
-                proxy_list = [each_proxy for each_proxy in self.database.get_all(self.generate_name(self._useful_prefix))]
+                proxy_list = [each_proxy for each_proxy in
+                              self.database.get_all(self.generate_name(self._useful_prefix))]
                 pool.map(self._validate_proxy, proxy_list)
                 pool.close()
                 pool.join()

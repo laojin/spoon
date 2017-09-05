@@ -33,6 +33,10 @@ class Fetcher(object):
         self.provider_list = providers
         return self
 
+    def add_provider(self, providers):
+        self.provider_list.extend(providers)
+        return self
+
     def __len__(self):
         return len(self.provider_list)
 
