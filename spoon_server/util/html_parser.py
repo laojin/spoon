@@ -6,13 +6,13 @@ from spoon_server.util.constant import HEADERS
 from spoon_server.util.logger import log
 
 
-def get_html(url, headers=None):
+def get_html(url, headers=None, cookie=None):
     if headers is None:
         headers = HEADERS
 
     try:
-        response = requests.get(url, headers=headers, timeout=10)
-        response.raise_for_status()
+        response = requests.get(url, headers=headers, cookies=cookie, timeout=10)
+        # response.raise_for_status()
         response.encoding = response.apparent_encoding
         return response.text
     except Exception as e:
@@ -20,12 +20,12 @@ def get_html(url, headers=None):
         return
 
 
-def get_html_tree(url, headers=None):
+def get_html_tree(url, headers=None, cookie=None):
     if headers is None:
         headers = HEADERS
 
     try:
-        response = requests.get(url=url, headers=headers, timeout=30)
+        response = requests.get(url=url, headers=headers, cookies=cookie, timeout=30)
         response.raise_for_status()
         response.encoding = response.apparent_encoding
         html = response.content

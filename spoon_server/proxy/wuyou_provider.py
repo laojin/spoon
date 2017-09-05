@@ -20,7 +20,7 @@ class WuyouProvider(Provider):
     def getter(self):
         for url in self.url_list:
             tree = get_html_tree(url)
-            if not tree:
+            if tree is None:
                 continue
             px_segment = tree.xpath("/html/body/div[5]/ul/li[2]/ul")[1:]
             for px in px_segment:

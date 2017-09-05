@@ -20,7 +20,7 @@ class GouProvider(Provider):
     def getter(self):
         for url in self.url_list:
             tree = get_html_tree(url)
-            if not tree:
+            if tree is None:
                 continue
             px_segment = tree.xpath("//table[@ class='table']/tbody/tr")
             for px in px_segment:
