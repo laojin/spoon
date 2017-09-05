@@ -7,14 +7,14 @@ from spoon_server.main.manager import Manager
 
 
 class Refresher(Manager):
-    def __init__(self, fetcher, url_prefix=None, database=None):
-        super(Refresher, self).__init__(database, url_prefix, fetcher)
+    def __init__(self, fetcher, url_prefix=None, database=None, checker=None):
+        super(Refresher, self).__init__(database, url_prefix, fetcher, checker)
 
     def _validate_proxy(self):
         origin_proxy = self.database.pop(self.generate_name(self._origin_prefix))
         exist_proxy = self.database.get_all(self.generate_name(self._origin_prefix))
         while origin_proxy:
-            if validate(self._url_prefix, origin_proxy) and (origin_proxy not in exist_proxy):
+            if validate(self._url_prefix, origin_proxy, self._checker) and (origin_proxy not in exist_proxy):
                 self.database.put(self.generate_name(self._useful_prefix), origin_proxy)
             origin_proxy = self.database.pop(self.generate_name(self._origin_prefix))
 
@@ -35,8 +35,8 @@ class Refresher(Manager):
             proc[num].join()
 
 
-def refresher_run(url=None, fetcher=None, database=None):
-    refresher = Refresher(url_prefix=url, fetcher=fetcher, database=database)
+def refresher_run(url=None, fetcher=None, database=None, checker=None):
+    refresher = Refresher(url_prefix=url, fetcher=fetcher, database=database, checker=checker)
     schedule.every(5).minutes.do(refresher.main)
     while True:
         schedule.run_pending()

@@ -1,5 +1,4 @@
 from queue import Queue, Empty
-from selenium import webdriver
 
 from spoon_server.browser.webdriver_item import WebDriverItem
 from spoon_server.browser.webdriver_pool_config import WebDriverPoolConfig
@@ -18,19 +17,19 @@ class WebdriverPool(object):
             try:
                 return self.available.get_nowait()
             except Empty:
-                driver = WebDriverItem(self.config)
+                driver_item = WebDriverItem(self.config)
                 self.all.put(driver)
-                return driver.get_webdriver()
+                return driver_item.get_webdriver()
 
-    def release(self, driver):
-        self.available.put(driver)
+    def release(self, driver_item):
+        self.available.put(driver_item)
 
     def stop(self):
         self.stopped = True
         while True:
             try:
-                driver = self.all.get(block=False)
-                driver.get_webdriver().quit()
+                driver_item = self.all.get(block=False)
+                driver_item.get_webdriver().quit()
             except Empty:
                 break
 

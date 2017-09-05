@@ -1,11 +1,12 @@
 from spoon_server.database.redis_wrapper import RedisWrapper
 from spoon_server.proxy.fetcher import Fetcher
+from spoon_server.main.checker import Checker
 from urllib.parse import urlparse
 from spoon_server.util.logger import log
 
 
 class Manager(object):
-    def __init__(self, database=None, url_prefix=None, fetcher=None):
+    def __init__(self, database=None, url_prefix=None, fetcher=None, checker=None):
         if not database:
             self.database = RedisWrapper("127.0.0.1", 6379, 0)
         else:
@@ -23,6 +24,11 @@ class Manager(object):
             self._fetcher = Fetcher()
         else:
             self._fetcher = fetcher
+
+        if not checker:
+            self._checker = Checker()
+        else:
+            self._checker = checker
 
         self.log = log
 

@@ -8,8 +8,8 @@ from spoon_server.database.redis_config import RedisConfig
 
 
 class Validater(Manager):
-    def __init__(self, url_prefix=None, database=None):
-        super(Validater, self).__init__(database, url_prefix)
+    def __init__(self, url_prefix=None, database=None, checker=None):
+        super(Validater, self).__init__(database, url_prefix, checker)
 
     def _validate_proxy(self, each_proxy):
         if isinstance(each_proxy, bytes):
@@ -17,7 +17,7 @@ class Validater(Manager):
         value = self.database.getvalue(self.generate_name(self._useful_prefix), each_proxy)
         if int(value) < -2:
             self.database.delete(self.generate_name(self._useful_prefix), each_proxy)
-        if validate(self._url_prefix, each_proxy):
+        if validate(self._url_prefix, each_proxy, self._checker):
             if not int(value) >= 100:
                 self.database.inckey(self.generate_name(self._useful_prefix), each_proxy, 1)
             else:
@@ -39,8 +39,8 @@ class Validater(Manager):
                 time.sleep(2)
 
 
-def validater_run(url=None, database=None):
-    validater = Validater(url_prefix=url, database=database)
+def validater_run(url=None, database=None, checker=None):
+    validater = Validater(url_prefix=url, database=database, checker=checker)
     validater.main()
 
 
