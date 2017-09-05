@@ -8,19 +8,6 @@ Only running on python 3.
 Please make sure the Redis is running. Default configuration is "host:localhost, port:6379". You can also modify the Redis connection.      
 Like `example.py` in `spoon_server/example`,      
 You can assign many different proxy providers.
-Also with different checker, you can validate the result precisely.
-```python
-class CheckerBaidu(Checker):
-    def checker_func(self, html=None):
-        if isinstance(html, bytes):
-            html = html.decode('utf-8')
-        if re.match(r".*百度一下，你就知道.*", html):
-            return True
-        else:
-            return False
-```
-
-
 ```python
 from spoon_server.proxy.fetcher import Fetcher
 from spoon_server.main.proxy_pipe import ProxyPipe
@@ -40,6 +27,19 @@ def main_run():
 if __name__ == '__main__':
     main_run()
 ```
+
+Also, with different checker, you can validate the result precisely.
+```python
+class CheckerBaidu(Checker):
+    def checker_func(self, html=None):
+        if isinstance(html, bytes):
+            html = html.decode('utf-8')
+        if re.match(r".*?????????.*", html):
+            return True
+        else:
+            return False
+```
+
 Also, as the code shows in `spoon_server/example/example_multi.py`, by using multiprocess, you can get many queues to fetching & validating the proxies.       
 You can also assign different Providers for different url.      
 The default proxy providers are shown below, you can write your own providers.             
