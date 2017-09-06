@@ -11,9 +11,10 @@ You can assign many different proxy providers.
 ```python
 from spoon_server.proxy.fetcher import Fetcher
 from spoon_server.main.proxy_pipe import ProxyPipe
-from spoon_server.proxy.us_provider import UsProvider
+from spoon_server.proxy.kuai_provider import KuaiProvider
+from spoon_server.proxy.xici_provider import XiciProvider
 from spoon_server.database.redis_config import RedisConfig
-
+from spoon_server.main.checker import CheckerBaidu
 
 def main_run():
     redis = RedisConfig("127.0.0.1", 21009)
