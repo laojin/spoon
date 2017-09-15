@@ -2,7 +2,8 @@ import re
 
 
 class Checker(object):
-    def __init__(self, url=None):
+    def __init__(self, url=None, timeout=20):
+        self.timeout = timeout
         self.url = url
 
     def checker_func(self, html=None):
@@ -10,6 +11,9 @@ class Checker(object):
 
 
 class CheckerBaidu(Checker):
+    def __init__(self, url=None, timeout=5):
+        super(CheckerBaidu, self).__init__(url, timeout)
+
     def checker_func(self, html=None):
         if isinstance(html, bytes):
             html = html.decode('utf-8')
