@@ -1,7 +1,7 @@
 import requests
 from spoon_server.util.logger import log
 from spoon_server.util.constant import HEADERS_IPHONE
-from spoon_server.main.checker import Checker
+from spoon_server.main.checker import CheckerBaidu
 
 
 def validate(target_url, proxy, checker):
@@ -24,4 +24,4 @@ def validate(target_url, proxy, checker):
 
 
 if __name__ == "__main__":
-    print(validate("http://www.gsxt.gov.cn/index.html", "61.160.190.34:8888", checker=Checker()))
+    print(validate("https://www.baidu.com", "127.0.0.1:6666", checker=CheckerBaidu()))
