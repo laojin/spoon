@@ -28,9 +28,10 @@ class KuaiProvider(Provider):
         return {clearance.split('=')[0]: clearance.split('=')[1]}
 
     def getter(self):
-        cookie = self._prepare()
+        # cookie = self._prepare()
         for url in self.url_list:
-            tree = get_html_tree(url, cookie=cookie)
+            # tree = get_html_tree(url, cookie=cookie)
+            tree = get_html_tree(url)
             if tree is None:
                 continue
             proxy_list = tree.xpath('//*[@id="freelist"]/table/tbody/tr')

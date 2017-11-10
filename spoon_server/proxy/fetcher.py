@@ -17,7 +17,7 @@ class Fetcher(object):
     @staticmethod
     def _generate_provider_list():
         gp = GouProvider()
-        kp = KuaiProvider()
+        kp = KuaiProvider()  # Maybe malfunction
         kpp = KuaiPayProvider()
         xp = XiciProvider()
         fp = FileProvider()
