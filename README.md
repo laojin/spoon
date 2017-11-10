@@ -2,6 +2,9 @@
 Spoon is a library for building Proxy Pool for each different sites as you assign.      
 Only running on python 3.
 
+## Install
+Simply run: `pip install spoonproxy` or clone the repo and set it into your PYTHONPATH.
+    
 ## Run
 
 ### Spoon-server
