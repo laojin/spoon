@@ -5,6 +5,8 @@ from spoon_server.proxy.kuai_pay_provider import KuaiPayProvider
 from spoon_server.proxy.file_provider import FileProvider
 from spoon_server.proxy.wuyou_provider import WuyouProvider
 from spoon_server.proxy.us_provider import UsProvider
+from spoon_server.proxy.ip181_provider import IP181Provider
+from spoon_server.proxy.six_provider import SixProvider
 
 
 class Fetcher(object):
@@ -16,14 +18,16 @@ class Fetcher(object):
 
     @staticmethod
     def _generate_provider_list():
-        gp = GouProvider()
+        ip181 = IP181Provider()
+        gp = GouProvider()  # Maybe IP Block
         kp = KuaiProvider()  # Maybe malfunction
         kpp = KuaiPayProvider()
         xp = XiciProvider()
         fp = FileProvider()
-        wp = WuyouProvider()
+        wp = WuyouProvider()  # Maybe IP Block
         up = UsProvider()
-        return [up, gp, kp, kpp, xp, fp, wp]
+        six = SixProvider()
+        return [ip181, up, gp, kp, kpp, xp, fp, wp, six]
 
     def clear(self):
         self.provider_list = []

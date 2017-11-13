@@ -28,7 +28,7 @@ def get_html_tree(url, headers=None, cookie=None):
         response = requests.get(url=url, headers=headers, cookies=cookie, timeout=30)
         response.raise_for_status()
         response.encoding = response.apparent_encoding
-        html = response.content
+        html = response.text
         if isinstance(html, bytes):
             html = html.decode("utf-8")
         time.sleep(1)

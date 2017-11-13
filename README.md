@@ -88,15 +88,19 @@ The default proxy providers are shown below, you can write your own providers.
           <td>http://www.xicidaili.com</td>
         </tr>
         <tr>
-          <td>YouProvider</td>
+          <td>YouProvider(@Deprecated)</td>
           <td>http://www.youdaili.net</td>
+        </tr>
+        <tr>
+          <td>IP181</td>
+          <td>http://www.ip181.com</td>
         </tr>
     </tbody>
 </table>
 
 ### Spoon-web
 A Simple django web api.          
-Gently run `python manager.py runserver ******:******`      
+Gently run `python manager.py runserver **.**.**.**:*****`      
 The simple apis include:
 <table class="table table-bordered table-striped">
     <thead>
