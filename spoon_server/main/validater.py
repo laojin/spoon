@@ -20,8 +20,11 @@ class Validater(Manager):
         else:
             if validate(self._url_prefix, each_proxy, self._checker):
                 if not int(value) >= 100:
+                    if int(value) == 99:
+                        self.database.set_value(self.generate_name(self._hundred_prefix), each_proxy, time.time())
                     self.database.inckey(self.generate_name(self._useful_prefix), each_proxy, 1)
                 else:
+                    self.database.set_value(self.generate_name(self._hundred_prefix), each_proxy, time.time())
                     self.database.set_value(self.generate_name(self._useful_prefix), each_proxy, 100)
             else:
                 if int(value) > 0:
