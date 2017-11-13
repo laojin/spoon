@@ -15,18 +15,19 @@ class Validater(Manager):
         if isinstance(each_proxy, bytes):
             each_proxy = each_proxy.decode('utf-8')
         value = self.database.getvalue(self.generate_name(self._useful_prefix), each_proxy)
-        if int(value) < -2:
+        if int(value) < 0:
             self.database.delete(self.generate_name(self._useful_prefix), each_proxy)
-        if validate(self._url_prefix, each_proxy, self._checker):
-            if not int(value) >= 100:
-                self.database.inckey(self.generate_name(self._useful_prefix), each_proxy, 1)
-            else:
-                self.database.set_value(self.generate_name(self._useful_prefix), each_proxy, 100)
         else:
-            if int(value) > 0:
-                self.database.set_value(self.generate_name(self._useful_prefix), each_proxy,
-                                        int(int(value) / 2))
-            self.database.inckey(self.generate_name(self._useful_prefix), each_proxy, -1)
+            if validate(self._url_prefix, each_proxy, self._checker):
+                if not int(value) >= 100:
+                    self.database.inckey(self.generate_name(self._useful_prefix), each_proxy, 1)
+                else:
+                    self.database.set_value(self.generate_name(self._useful_prefix), each_proxy, 100)
+            else:
+                if int(value) > 0:
+                    self.database.set_value(self.generate_name(self._useful_prefix), each_proxy,
+                                            int(int(value) / 2))
+                self.database.inckey(self.generate_name(self._useful_prefix), each_proxy, -1)
 
     def main(self):
         while True:
