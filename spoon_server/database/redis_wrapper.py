@@ -4,8 +4,8 @@ import redis
 
 
 class RedisWrapper(object):
-    def __init__(self, host, port, db=0):
-        self._connection = redis.Redis(host=host, port=port, db=db, encoding='utf-8')
+    def __init__(self, host, port, db=0, password=None):
+        self._connection = redis.Redis(host=host, port=port, db=db, encoding='utf-8', password=password)
 
     def get(self, name):
         key = self._connection.hgetall(name=name)

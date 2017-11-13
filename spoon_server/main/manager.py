@@ -10,7 +10,7 @@ class Manager(object):
         if not database:
             self.database = RedisWrapper("127.0.0.1", 6379, 0)
         else:
-            self.database = RedisWrapper(database.host, database.port, database.db)
+            self.database = RedisWrapper(database.host, database.port, database.db, database.password)
 
         self._origin_prefix = 'origin_proxy'
         self._useful_prefix = 'useful_proxy'
