@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='spoonproxy',
-    version='0.2.0',
+    version='0.2.1',
     description='A package for building specific Proxy Pool for different Sites.',
     packages=find_packages(),
     url='https://github.com/Jiramew/spoon',
