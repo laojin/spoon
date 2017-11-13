@@ -12,9 +12,9 @@ class Refresher(Manager):
 
     def _validate_proxy(self):
         origin_proxy = self.database.pop(self.generate_name(self._origin_prefix))
-        exist_proxy = self.database.get_all(self.generate_name(self._origin_prefix))
+        exist_proxy = self.database.get_all(self.generate_name(self._useful_prefix))
         while origin_proxy:
-            if validate(self._url_prefix, origin_proxy, self._checker) and (origin_proxy not in exist_proxy):
+            if (origin_proxy not in exist_proxy) and validate(self._url_prefix, origin_proxy, self._checker):
                 self.database.put(self.generate_name(self._useful_prefix), origin_proxy)
             origin_proxy = self.database.pop(self.generate_name(self._origin_prefix))
 
