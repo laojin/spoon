@@ -1,11 +1,12 @@
 import json
+import time
 import random
 from django.http import HttpResponse
 
 from spoon_server.database.redis_config import RedisConfig
 from spoon_server.main.manager import Manager
 
-redis = RedisConfig("127.0.0.1", 21009)
+redis = RedisConfig("47.93.234.57", 6379, 0, "123")
 
 
 def get_keys(request):
@@ -34,4 +35,16 @@ def fetchall_from(request):
     px_kv = m.get_all_kv_from(search_name)
     res_list = [k.decode('utf-8') for (k, v) in px_kv.items() if int(v) > filter_num]
 
+    return HttpResponse("\r\n".join(res_list))
+
+
+def fetch_hundred_recent(request):
+    m = Manager(database=redis)
+    target_name = request.GET.get("target", "www.baidu.com")
+    filter_num = int(request.GET.get("filter", 30))
+    search_name = ":".join(["spoon", target_name, "hundred_proxy"])
+
+    px_kv = m.get_all_kv_from(search_name)
+    res_list = [k.decode('utf-8') for (k, v) in px_kv.items() if
+                abs(float(v.decode('utf-8')) - time.time()) < filter_num]
     return HttpResponse("\r\n".join(res_list))
