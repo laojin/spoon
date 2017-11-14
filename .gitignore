@@ -6,3 +6,5 @@ test/
 dist/
 build/
 spoonproxy.egg-info/
+setup_pypi.py
+build.sh

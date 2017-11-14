@@ -1,4 +1,4 @@
 #!bin/bash
-python setup.py sdist build
-python setup.py bdist_wheel --universal
+python setup_pypi.py sdist build
+python setup_pypi.py bdist_wheel --universal
 twine upload dist/*

@@ -49,7 +49,7 @@ class Manager(object):
 
         provider_to_be_removed_index = []
         for index in range(len(self._fetcher)):
-            provider = self._fetcher.get(index)
+            provider = self._fetcher.get_provider(index)
             try:
                 proxies = provider.getter()
             except Exception as e:
