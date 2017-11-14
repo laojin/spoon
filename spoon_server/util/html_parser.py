@@ -25,7 +25,7 @@ def get_html_tree(url, headers=None, cookie=None):
         headers = HEADERS
 
     try:
-        response = requests.get(url=url, headers=headers, cookies=cookie, timeout=30)
+        response = requests.get(url=url, headers=headers, cookies=cookie, timeout=10)
         response.raise_for_status()
         response.encoding = response.apparent_encoding
         html = response.text
@@ -35,7 +35,7 @@ def get_html_tree(url, headers=None, cookie=None):
         return etree.HTML(html)
     except Exception as e:
         log.error("{0}".format(e))
-        raise Exception(e)
+        raise e
 
 
 if __name__ == "__main__":
