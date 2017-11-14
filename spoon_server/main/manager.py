@@ -43,10 +43,22 @@ class Manager(object):
 
     def refresh(self):
         if len(self._fetcher) == 0:
-            raise Exception("NO PROXY PROVIDER")
+            log.error("REFRESH FETCHER FAILED: NO PROVIDER")
+            return
         proxy_set = set()
-        for provider in self._fetcher.provider_list:
-            for proxy in provider.getter():
+
+        provider_to_be_removed_index = []
+        for index in range(len(self._fetcher)):
+            provider = self._fetcher.get(index)
+            try:
+                proxies = provider.getter()
+            except Exception as e:
+                provider_to_be_removed_index.append(index)
+                log.error(
+                    "REFRESH FETCHER FAILED: PROVIDER {0} WILL BE REMOVED ERROR {1}".format(provider.__class__.__name__,
+                                                                                            e))
+                proxies = []
+            for proxy in proxies:
                 if proxy.strip():
                     self.log.info(
                         "REFRESH FETCHER: TARGET {0} PROVIDER {1} PROXY {2}".format(self.get_netloc(),
@@ -55,6 +67,7 @@ class Manager(object):
                     proxy_set.add(proxy.strip())
             for proxy in proxy_set:
                 self.database.put(self.generate_name(self._origin_prefix), proxy)
+        self._fetcher.remove_provider(provider_to_be_removed_index)
 
     def get(self):
         return self.database.get(self.generate_name(self._useful_prefix))

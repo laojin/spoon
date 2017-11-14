@@ -41,6 +41,14 @@ class Fetcher(object):
         self.provider_list.extend(providers)
         return self
 
+    def get_provider(self, index):
+        return self.provider_list[index]
+
+    def remove_provider(self, indices):
+        indices.reverse()
+        for index in indices:
+            self.provider_list.pop(index)
+
     def __len__(self):
         return len(self.provider_list)
 
