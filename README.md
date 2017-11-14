@@ -124,7 +124,7 @@ The simple apis include:
         </tr>
         <tr>
           <td>http://127.0.0.1:21010/api/v1/fetch_hundred_recent?target=www.baidu.com&filter=5</td>
-          <td>Get recently joined proxies. <br>target: the specific url<br> filter: time in seconds</td>
+          <td>Get recently joined full-scored proxies. <br>target: the specific url<br> filter: time in seconds</td>
         </tr>
     </tbody>
 </table>
