@@ -13,6 +13,7 @@ class KuaiPayProvider(Provider):
         url_list = []
         return url_list
 
+    @Provider.provider_exception
     def getter(self):
         for url in self.url_list:
             content = requests.get(url).content.decode("utf-8")

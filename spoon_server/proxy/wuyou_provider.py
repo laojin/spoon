@@ -17,6 +17,7 @@ class WuyouProvider(Provider):
 
         return url_list
 
+    @Provider.provider_exception
     def getter(self):
         for url in self.url_list:
             tree = get_html_tree(url)

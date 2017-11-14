@@ -17,6 +17,7 @@ class YouProvider(Provider):
             './/div[@class="chunlist"]/ul/li/p/a/@href')[0:1]
         return url_list
 
+    @Provider.provider_exception
     def getter(self):
         for url in self.url_list:
             html = requests.get(url, headers=HEADERS).content

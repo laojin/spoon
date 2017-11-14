@@ -17,6 +17,7 @@ class GouProvider(Provider):
         url_list = [url.format(j) for url in base_url_list for j in range(1, page)]
         return url_list
 
+    @Provider.provider_exception
     def getter(self):
         for url in self.url_list:
             tree = get_html_tree(url)
@@ -30,5 +31,8 @@ class GouProvider(Provider):
 
 if __name__ == "__main__":
     kd = GouProvider()
-    for proxy in kd.getter():
-        print(proxy)
+    try:
+        for proxy in kd.getter():
+            print(proxy)
+    except Exception as e:
+        print(e)

@@ -13,6 +13,7 @@ class UsProvider(Provider):
         url_list = ['https://www.us-proxy.org/']
         return url_list
 
+    @Provider.provider_exception
     def getter(self):
         for url in self.url_list:
             tree = get_html_tree(url)

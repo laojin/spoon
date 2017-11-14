@@ -27,6 +27,7 @@ class KuaiProvider(Provider):
         clearance = cookie_string.split(';')[0]
         return {clearance.split('=')[0]: clearance.split('=')[1]}
 
+    @Provider.provider_exception
     def getter(self):
         # cookie = self._prepare()
         for url in self.url_list:
