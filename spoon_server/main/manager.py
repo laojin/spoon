@@ -66,6 +66,7 @@ class Manager(object):
 
             for proxy in proxy_set:
                 self.database.put(self.generate_name(self._origin_prefix), proxy)
+        log.info("REFRESH FETCHER DELETE {0}".format(provider_to_be_removed_index))
         self._fetcher.remove_provider(provider_to_be_removed_index)
 
     def get(self):
