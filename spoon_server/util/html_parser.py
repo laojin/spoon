@@ -17,7 +17,7 @@ def get_html(url, headers=None, cookie=None):
         return response.text
     except Exception as e:
         log.error("{0}".format(e))
-        return
+        raise Exception(e)
 
 
 def get_html_tree(url, headers=None, cookie=None):
@@ -35,7 +35,7 @@ def get_html_tree(url, headers=None, cookie=None):
         return etree.HTML(html)
     except Exception as e:
         log.error("{0}".format(e))
-        return
+        raise Exception(e)
 
 
 if __name__ == "__main__":
