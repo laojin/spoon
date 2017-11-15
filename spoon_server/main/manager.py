@@ -44,7 +44,7 @@ class Manager(object):
 
     def refresh(self):
         log.info("REFRESH START WITH {0}".format(str(self._fetcher)))
-        if len(self._fetcher) < 4:
+        if len(self._fetcher) < 3:
             log.error("REFRESH FETCHER FAILED: NO ENOUGH PROVIDER, RESTORE PROVIDERS")
             self._fetcher.restore_provider()
         proxy_set = set()

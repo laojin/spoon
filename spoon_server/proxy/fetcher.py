@@ -1,3 +1,4 @@
+import copy
 from spoon_server.proxy.gou_provider import GouProvider
 from spoon_server.proxy.kuai_provider import KuaiProvider
 from spoon_server.proxy.xici_provider import XiciProvider
@@ -49,7 +50,7 @@ class Fetcher(object):
             self.provider_list.pop(index)
 
     def backup_provider(self):
-        self.origin_provider_list = self.provider_list
+        self.origin_provider_list = copy.deepcopy(self.provider_list)
 
     def restore_provider(self):
         self.provider_list = self.origin_provider_list
