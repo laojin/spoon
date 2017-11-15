@@ -31,6 +31,7 @@ class Manager(object):
         else:
             self._checker = checker
 
+        self._fetcher.backup_provider()
         self.log = log
 
     def get_netloc(self):
@@ -42,9 +43,10 @@ class Manager(object):
         return ":".join(["spoon", self.get_netloc(), prefix])
 
     def refresh(self):
-        if len(self._fetcher) == 0:
-            log.error("REFRESH FETCHER FAILED: NO PROVIDER")
-            return
+        log.info("REFRESH START WITH {0}".format(str(self._fetcher)))
+        if len(self._fetcher) < 4:
+            log.error("REFRESH FETCHER FAILED: NO ENOUGH PROVIDER, RESTORE PROVIDERS")
+            self._fetcher.restore_provider()
         proxy_set = set()
 
         provider_to_be_removed_index = []
