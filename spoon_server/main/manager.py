@@ -21,9 +21,10 @@ class Manager(object):
         else:
             self._url_prefix = url_prefix
 
-        if not fetcher:
+        if not fetcher:  # validater
             self._fetcher = Fetcher()
-        else:
+        else:  # refresher
+            self._fetcher.backup_provider()
             self._fetcher = fetcher
 
         if not checker:
@@ -31,7 +32,6 @@ class Manager(object):
         else:
             self._checker = checker
 
-        self._fetcher.backup_provider()
         self.log = log
 
     def get_netloc(self):
