@@ -9,7 +9,7 @@ from spoon_server.database.redis_config import RedisConfig
 
 class Validater(Manager):
     def __init__(self, url_prefix=None, database=None, checker=None):
-        super(Validater, self).__init__(database, url_prefix, checker)
+        super(Validater, self).__init__(database=database, url_prefix=url_prefix, checker=checker)
 
     def _validate_proxy(self, each_proxy):
         if isinstance(each_proxy, bytes):

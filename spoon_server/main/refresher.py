@@ -8,7 +8,7 @@ from spoon_server.main.manager import Manager
 
 class Refresher(Manager):
     def __init__(self, fetcher, url_prefix=None, database=None, checker=None):
-        super(Refresher, self).__init__(database, url_prefix, fetcher, checker)
+        super(Refresher, self).__init__(database=database, url_prefix=url_prefix, fetcher=fetcher, checker=checker)
 
     def _validate_proxy(self):
         origin_proxy = self.database.pop(self.generate_name(self._origin_prefix))

@@ -24,8 +24,8 @@ class Manager(object):
         if not fetcher:  # validater
             self._fetcher = Fetcher()
         else:  # refresher
-            self._fetcher.backup_provider()
             self._fetcher = fetcher
+            self._fetcher.backup_provider()
 
         if not checker:
             self._checker = Checker()
