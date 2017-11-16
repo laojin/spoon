@@ -95,6 +95,14 @@ The default proxy providers are shown below, you can write your own providers.
           <td>IP181</td>
           <td>http://www.ip181.com</td>
         </tr>
+        <tr>
+          <td>XunProvider</td>
+          <td>http://www.xdaili.cn</td>
+        </tr>
+        <tr>
+          <td>PlpProvider</td>
+          <td>https://list.proxylistplus.com/Fresh-HTTP-Proxy-List-1</td>
+        </tr>
     </tbody>
 </table>
 
