@@ -6,7 +6,7 @@ from django.http import HttpResponse
 from spoon_server.database.redis_config import RedisConfig
 from spoon_server.main.manager import Manager
 
-redis = RedisConfig("47.93.234.57", 6379, 0, "123")
+redis = RedisConfig("127.0.0.1", 6379, 0, "123")
 
 
 def get_keys(request):

@@ -25,6 +25,11 @@ class RedisWrapper(object):
             self._connection.hdel(name, key)
         return key
 
+    def len(self, name):
+        key = self.get(name)
+        if key:
+            self._connection.hlen(name)
+
     def delete(self, name, key):
         self._connection.hdel(name, key)
 

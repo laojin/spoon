@@ -42,8 +42,27 @@ class Manager(object):
     def generate_name(self, prefix):
         return ":".join(["spoon", self.get_netloc(), prefix])
 
+    def refresh_condition(self):
+        all_proxy_score = [[k.decode('utf-8'), v.decode('utf-8')] for (k, v) in
+                           self.get_all_kv_from(self.generate_name(self._useful_prefix)).items()]
+
+        all_length = len(all_proxy_score)
+        count_length = len([0 for (k, v) in all_proxy_score if v >= 95])
+
+        if all_length == 0:
+            return True
+
+        if count_length / all_length > 0.2:
+            return True
+        else:
+            return False
+
     def refresh(self):
         log.info("REFRESH START WITH {0}".format(str(self._fetcher)))
+        if not self.refresh_condition():
+            log.info("REFRESH DID NOT MEET CONDITION")
+            return
+
         if len(self._fetcher) < 3:
             log.error("REFRESH FETCHER FAILED: NO ENOUGH PROVIDER, RESTORE PROVIDERS")
             self._fetcher.restore_provider()
