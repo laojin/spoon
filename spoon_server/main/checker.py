@@ -10,6 +10,21 @@ class Checker(object):
         return True
 
 
+class CheckerKeyword(Checker):
+    def __init__(self, url=None, timeout=5):
+        super(CheckerKeyword, self).__init__(url, timeout)
+
+    def checker_func(self, html=None, keyword=None):
+        if keyword is None:
+            return True
+        if isinstance(html, bytes):
+            html = html.decode('utf-8')
+        if re.search(keyword, html, re.MULTILINE):
+            return True
+        else:
+            return False
+
+
 class CheckerBaidu(Checker):
     def __init__(self, url=None, timeout=5):
         super(CheckerBaidu, self).__init__(url, timeout)
