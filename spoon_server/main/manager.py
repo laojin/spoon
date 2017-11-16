@@ -43,7 +43,7 @@ class Manager(object):
         return ":".join(["spoon", self.get_netloc(), prefix])
 
     def refresh_condition(self):
-        all_proxy_score = [[k.decode('utf-8'), v.decode('utf-8')] for (k, v) in
+        all_proxy_score = [[k.decode('utf-8'), int(v.decode('utf-8'))] for (k, v) in
                            self.get_all_kv_from(self.generate_name(self._useful_prefix)).items()]
 
         all_length = len(all_proxy_score)
