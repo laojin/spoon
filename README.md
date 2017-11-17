@@ -65,11 +65,11 @@ The default proxy providers are shown below, you can write your own providers.
         </tr>
         <tr>
           <td>GouProvider</td>
-          <td>www.goubanjia.com</td>
+          <td>http://www.goubanjia.com</td>
         </tr>
         <tr>
           <td>KuaiProvider</td>
-          <td>www.kuaidaili.com</td>
+          <td>http://www.kuaidaili.com</td>
         </tr>
         <tr>
           <td>SixProvider</td>
@@ -101,7 +101,7 @@ The default proxy providers are shown below, you can write your own providers.
         </tr>
         <tr>
           <td>PlpProvider</td>
-          <td>https://list.proxylistplus.com/Fresh-HTTP-Proxy-List-1</td>
+          <td>https://list.proxylistplus.com</td>
         </tr>
         <tr>
           <td>IP3366Provider</td>
@@ -110,6 +110,10 @@ The default proxy providers are shown below, you can write your own providers.
         <tr>
           <td>BusyProvider</td>
           <td>https://proxy.coderbusy.com</td>
+        </tr>
+        <tr>
+          <td>NianProvider</td>
+          <td>http://www.nianshao.me</td>
         </tr>
     </tbody>
 </table>
