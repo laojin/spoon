@@ -103,6 +103,14 @@ The default proxy providers are shown below, you can write your own providers.
           <td>PlpProvider</td>
           <td>https://list.proxylistplus.com/Fresh-HTTP-Proxy-List-1</td>
         </tr>
+        <tr>
+          <td>IP3366Provider</td>
+          <td>http://www.ip3366.net</td>
+        </tr>
+        <tr>
+          <td>BusyProvider</td>
+          <td>https://proxy.coderbusy.com</td>
+        </tr>
     </tbody>
 </table>
 
