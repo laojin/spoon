@@ -49,10 +49,10 @@ class Manager(object):
         all_length = len(all_proxy_score)
         count_length = len([0 for (k, v) in all_proxy_score if v >= 95])
 
-        if all_length == 0:
+        if all_length == 0 or count_length == 0:
             return True
 
-        if count_length / all_length > 0.2:
+        if count_length / all_length >= 0.12:
             return True
         else:
             return False
