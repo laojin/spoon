@@ -52,7 +52,7 @@ class Manager(object):
         if all_length == 0 or count_length == 0:
             return True
 
-        if count_length / all_length >= 0.12:
+        if count_length / all_length >= 0.2:
             return True
         else:
             return False
