@@ -115,6 +115,10 @@ The default proxy providers are shown below, you can write your own providers.
           <td>NianProvider</td>
           <td>http://www.nianshao.me</td>
         </tr>
+        <tr>
+          <td>PdbProvider</td>
+          <td>http://proxydb.net</td>
+        </tr>
     </tbody>
 </table>
 
