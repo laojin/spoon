@@ -53,7 +53,7 @@ class Fetcher(object):
         self.origin_provider_list = copy.deepcopy(self.provider_list)
 
     def restore_provider(self):
-        self.provider_list = self.origin_provider_list
+        self.provider_list = self.origin_provider_list[:]
 
     def __len__(self):
         return len(self.provider_list)

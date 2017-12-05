@@ -26,7 +26,7 @@ class Manager(object):
         else:  # refresher
             self._fetcher = fetcher
             self._fetcher.backup_provider()
-            log.error("REFRESH FETCHER BACKUP PROVIDER".format(str(self._fetcher)))
+            log.error("REFRESH FETCHER BACKUP PROVIDER {0}".format(str(self._fetcher)))
 
         if not checker:
             self._checker = Checker()
@@ -66,7 +66,7 @@ class Manager(object):
 
         if len(self._fetcher) < 3:
             self._fetcher.restore_provider()
-            log.error("REFRESH FETCHER FAILED: NO ENOUGH PROVIDER, RESTORE PROVIDERS TO {0}".format(str(self._fetcher)))
+            log.info("REFRESH FETCHER FAILED: NO ENOUGH PROVIDER, RESTORE PROVIDERS TO {0}".format(str(self._fetcher)))
         proxy_set = set()
 
         provider_to_be_removed_index = []
